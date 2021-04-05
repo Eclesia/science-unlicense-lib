@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "science-unlicense-common",
+    "science-unlicense-math",
+    "science-unlicense-geometry",
+    "science-unlicense-image"
+]

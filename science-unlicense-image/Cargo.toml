@@ -1,0 +1,12 @@
+[package]
+name = "science-unlicense-image"
+version = "0.1.0"
+edition = "2018"
+license = "Unlicense"
+authors = ["Johann Sorel"]
+homepage = "http://unlicense.science"
+repository = "https://github.com/Eclesia/science-unlicense-lib"
+keywords = ["science"]
+publish = true
+
+[dependencies]
