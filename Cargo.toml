@@ -4,5 +4,6 @@ members = [
     "science-unlicense-common",
     "science-unlicense-math",
     "science-unlicense-geometry",
-    "science-unlicense-image"
+    "science-unlicense-image",
+    "science-unlicense-demo"
 ]

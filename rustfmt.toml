@@ -1,0 +1,28 @@
+
+hard_tabs = false
+max_width = 120 #80 or 100 are an uncessesary constraint with todays screens and nobody prints code anymore
+reorder_imports = true
+reorder_modules = true
+tab_spaces = 4
+
+### Unstable configs, to activate when ready
+
+#binop_separator = "Front"
+#comment_width = 120 #80 or 100 are an uncessesary constraint with todays screens and nobody prints code anymore
+#normalize_doc_attributes = true #keep everything with the same documentation model
+#license_template_path = "// Public Domain - unlicense.science"
+#empty_item_single_line = true
+#fn_single_line = false
+#imports_layout = "Vertical"
+#imports_granularity = "Item" # improves git merge resolution and better visual
+#reorder_impl_items = true
+#type_punctuation_density = "Wide"
+#trailing_semicolon = true
+#space_after_colon = true
+#space_before_colon = true
+#spaces_around_ranges = true
+#color = "Auto"
+#force_multiline_blocks = true
+#brace_style = "SameLineWhere"
+#condense_wildcard_suffixes = false
+#control_brace_style = "AlwaysSameLine"

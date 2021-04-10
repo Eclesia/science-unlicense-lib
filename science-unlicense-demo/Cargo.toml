@@ -1,5 +1,5 @@
 [package]
-name = "science-unlicense-image"
+name = "science-unlicense-demo"
 version = "0.1.0"
 edition = "2018"
 license = "Unlicense"
@@ -7,7 +7,7 @@ authors = ["Johann Sorel"]
 homepage = "http://unlicense.science"
 repository = "https://github.com/Eclesia/science-unlicense-lib"
 keywords = ["science"]
-publish = true
+publish = false
 
 [dependencies]
 science-unlicense-math = { path = "../science-unlicense-math" }

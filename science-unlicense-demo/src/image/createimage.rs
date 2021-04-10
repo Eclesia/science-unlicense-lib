@@ -1,6 +1,6 @@
 // Public Domain - unlicense.science
 
-pub mod api;
+pub fn run() {
 
-#[cfg(test)]
-mod tests;
+    println!("hello")
+}
