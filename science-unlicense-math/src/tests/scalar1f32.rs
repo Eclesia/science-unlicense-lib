@@ -8,4 +8,3 @@ pub fn test() {
     let x = v.get(0);
     let y = v.get(1);
 }
-

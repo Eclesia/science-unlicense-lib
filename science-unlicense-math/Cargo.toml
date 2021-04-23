@@ -10,3 +10,4 @@ keywords = ["science"]
 publish = true
 
 [dependencies]
+science-unlicense-common = { path = "../science-unlicense-common" }

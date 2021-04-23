@@ -1,7 +1,7 @@
+//
 // Public Domain - unlicense.science
+//
+use crate::api::tuple::TupleSpace;
 
-use science_unlicense_math::api::Tuple;
+pub trait TupleArray: TupleSpace {}
 
-pub trait TupleArray {
-    fn get(&self, coordinate: Box<dyn Tuple>) -> Box<dyn Tuple>;
-}

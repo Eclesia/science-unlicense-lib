@@ -1,8 +1,15 @@
-// Public Domain - unlicense.science
+use crate::api::system::SampleSystem;
 
+//
+// Public Domain - unlicense.science
+//
 pub trait Tuple {
+
+    /// Get description of tuple samples.
+    fn get_sample_system(&self) -> Box<dyn SampleSystem>;
+
     /// Size of the Tuple
-    fn get_dimension(&self) -> u32;
+    fn get_sample_count(&self) -> u32;
 
     /// index must be between 0 and tuple dimension
     fn get(&self, index: u32) -> f64;

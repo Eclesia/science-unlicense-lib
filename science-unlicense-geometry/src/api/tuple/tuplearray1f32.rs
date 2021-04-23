@@ -1,6 +1,7 @@
+//
 // Public Domain - unlicense.science
-
-use crate::api::tuple::TupleArray;
+//
+use crate::api::tuple::{TupleArray, TupleSpace};
 use science_unlicense_math::api::Scalar1f32;
 use science_unlicense_math::api::Tuple;
 
@@ -16,10 +17,12 @@ impl TupleArray1f32 {
     }
 }
 
-impl TupleArray for TupleArray1f32 {
+impl TupleSpace for TupleArray1f32 {
     fn get(&self, coordinate: Box<dyn Tuple>) -> Box<dyn Tuple> {
         let x = self.values[coordinate.get(0) as usize];
         let s = Scalar1f32::new(x);
         return Box::new(s);
     }
 }
+
+impl TupleArray for TupleArray1f32 {}

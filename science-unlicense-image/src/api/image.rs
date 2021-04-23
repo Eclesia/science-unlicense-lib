@@ -1,5 +1,6 @@
+//
 // Public Domain - unlicense.science
-
+//
 use crate::api::model::ImageModel;
 use science_unlicense_math::api::Tuple;
 

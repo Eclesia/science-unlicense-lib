@@ -9,46 +9,50 @@ use std::panic::panic_any;
 use crate::api::system::SampleSystem;
 use crate::api::system::samplesystems;
 
-pub struct Scalar1f32 {
+pub struct Vector2u32 {
     pub system: Box<dyn SampleSystem>,
-    pub x: f32,
+    pub x: u32,
+    pub y: u32,
 }
 
-impl Scalar1f32 {
+impl Vector2u32 {
     pub fn new_empty() -> Self {
-        return Scalar1f32::new(Box::new(samplesystems::create(1)), 0f32);
-    }
-    pub fn new_data(x: f32) -> Self {
-        return Scalar1f32::new(Box::new(samplesystems::create(1)),  x);
+        return Vector2u32::new_data(0, 0);
     }
 
-    pub fn new(system: Box<dyn SampleSystem>, x: f32) -> Self {
-        return Scalar1f32 { system: system, x: x };
+    pub fn new_data(x: u32, y: u32) -> Self {
+        return Vector2u32::new(Box::new(samplesystems::create(2)), x, y);
+    }
+
+    pub fn new(system: Box<dyn SampleSystem>, x: u32, y: u32) -> Self {
+        return Vector2u32 { system:system, x: x, y: y };
     }
 }
 
-impl Tuple for Scalar1f32 {
+impl Tuple for Vector2u32 {
     fn get_sample_system(&self) -> Box<dyn SampleSystem> {
-        return self.system;
+        todo!()
     }
 
     fn get_sample_count(&self) -> u32 {
-        return self.system.get_num_components();
+        return 1;
     }
 
     fn get(&self, index: u32) -> f64 {
         match index {
             0 => return self.x as f64,
+            1 => return self.y as f64,
             _ => panic_any(logging::format(MESSAGE_INVALID_COORD, &index)),
         }
     }
 
     fn set(&mut self, index: u32, value: f64) {
         match index {
-            0 => self.x = value as f32,
+            0 => self.x = value as u32,
+            1 => self.y = value as u32,
             _ => panic_any(logging::format(MESSAGE_INVALID_COORD, &index)),
         }
     }
 }
 
-impl Vector for Scalar1f32 {}
+impl Vector for Vector2u32 {}
