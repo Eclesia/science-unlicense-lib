@@ -1,4 +1,5 @@
 use crate::api::system::SampleSystem;
+use std::sync::Arc;
 
 //
 // Public Domain - unlicense.science
@@ -6,7 +7,7 @@ use crate::api::system::SampleSystem;
 pub trait Tuple {
 
     /// Get description of tuple samples.
-    fn get_sample_system(&self) -> Box<dyn SampleSystem>;
+    fn get_sample_system(&self) -> Arc<dyn SampleSystem>;
 
     /// Size of the Tuple
     fn get_sample_count(&self) -> u32;

@@ -3,7 +3,9 @@
 members = [
     "science-unlicense-common",
     "science-unlicense-math",
+    "science-unlicense-encoding",
     "science-unlicense-geometry",
     "science-unlicense-image",
+    "science-unlicense-format-tga",
     "science-unlicense-demo"
 ]

@@ -8,32 +8,35 @@ use science_unlicense_common::api::logging;
 use std::panic::panic_any;
 use crate::api::system::SampleSystem;
 use crate::api::system::samplesystems;
+use std::sync::Arc;
 
 pub struct Scalar1f32 {
-    pub system: Box<dyn SampleSystem>,
+    pub system: Arc<dyn SampleSystem>,
     pub x: f32,
 }
 
 impl Scalar1f32 {
+
     pub fn new_empty() -> Self {
-        return Scalar1f32::new(Box::new(samplesystems::create(1)), 0f32);
-    }
-    pub fn new_data(x: f32) -> Self {
-        return Scalar1f32::new(Box::new(samplesystems::create(1)),  x);
+        return Scalar1f32::new(Arc::new(samplesystems::create(1)), 0f32);
     }
 
-    pub fn new(system: Box<dyn SampleSystem>, x: f32) -> Self {
+    pub fn new_data(x: f32) -> Self {
+        return Scalar1f32::new(Arc::new(samplesystems::create(1)),  x);
+    }
+
+    pub fn new(system: Arc<dyn SampleSystem>, x: f32) -> Self {
         return Scalar1f32 { system: system, x: x };
     }
 }
 
 impl Tuple for Scalar1f32 {
-    fn get_sample_system(&self) -> Box<dyn SampleSystem> {
-        return self.system;
+    fn get_sample_system(&self) -> Arc<dyn SampleSystem> {
+        return self.system.clone();
     }
 
     fn get_sample_count(&self) -> u32 {
-        return self.system.get_num_components();
+        return 1;
     }
 
     fn get(&self, index: u32) -> f64 {

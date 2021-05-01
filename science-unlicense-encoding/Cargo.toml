@@ -1,0 +1,15 @@
+[package]
+name = "science-unlicense-encoding"
+version = "0.1.0"
+edition = "2018"
+license = "Unlicense"
+authors = ["Johann Sorel"]
+homepage = "http://unlicense.science"
+repository = "https://github.com/Eclesia/science-unlicense-lib"
+keywords = ["science"]
+publish = true
+
+[dependencies]
+science-unlicense-common = { path = "../science-unlicense-common" }
+science-unlicense-math = { path = "../science-unlicense-math" }
+inventory = "0.1.10"

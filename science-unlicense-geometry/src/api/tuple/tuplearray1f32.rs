@@ -20,7 +20,7 @@ impl TupleArray1f32 {
 impl TupleSpace for TupleArray1f32 {
     fn get(&self, coordinate: Box<dyn Tuple>) -> Box<dyn Tuple> {
         let x = self.values[coordinate.get(0) as usize];
-        let s = Scalar1f32::new(x);
+        let s = Scalar1f32::new_data(x);
         return Box::new(s);
     }
 }
