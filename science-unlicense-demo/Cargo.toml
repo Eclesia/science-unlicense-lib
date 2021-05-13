@@ -12,3 +12,5 @@ publish = false
 [dependencies]
 science-unlicense-math = { path = "../science-unlicense-math" }
 science-unlicense-geometry = { path = "../science-unlicense-geometry" }
+science-unlicense-encoding = { path = "../science-unlicense-encoding" }
+science-unlicense-common = { path = "../science-unlicense-common" }
