@@ -7,11 +7,11 @@ use crate::api::io::{Readable, Writable};
 
 pub trait Path: Readable + Writable{
 
-    fn canRead() -> bool;
+    fn can_read() -> bool;
 
-    fn canWrite() -> bool;
+    fn can_write() -> bool;
 
-    fn canSeek() -> bool;
+    fn can_seek() -> bool;
 
     fn open() -> u32;
 

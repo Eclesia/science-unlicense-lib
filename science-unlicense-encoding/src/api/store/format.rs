@@ -2,9 +2,9 @@
 // Public Domain - unlicense.science
 //
 
-use std::io::Error;
 use crate::api::io::Readable;
 use crate::api::store::Store;
+use science_unlicense_common::api::model::doc::DocumentType;
 
 ///
 /// A format define a group of bytes organize in a defined structure.
@@ -67,7 +67,7 @@ pub trait Format {
     ///
     /// @return collection of possible signatures, never null
     ///
-    fn get_signature(&self) -> &Vec<&Vec<u8>>;
+    fn get_signature(&self) -> &Vec<&str>;
 
     ///
     /// Some formats extend existing formats, this is the case for formats based
@@ -99,7 +99,7 @@ pub trait Format {
     /// @return true if input can be decoded by this format.
     /// @throws science.unlicense.encoding.api.io.IOException
     ///
-    fn can_decode(&self, input: &mut dyn Readable) -> Result<bool, Error>;
+    fn can_decode(&self, input: &mut dyn Readable) -> Result<bool, String>;
 
     ///
     /// Finding the expected end of the current format can have multiple use.
@@ -113,20 +113,20 @@ pub trait Format {
     ///
     /// Formats are allowed to return -1 in any case.
     ///
-    fn search_end(&self, input: &mut dyn Readable, fullscan: bool) -> Result<u64, Error>;
+    fn search_end(&self, input: &mut dyn Readable, fullscan: bool) -> Result<u64, String>;
 
     ///
     /// Get a description of parameters used to open a new store.
     ///
     /// @return DocumentType, never null
     ///
-    fn get_parameters(&self);
+    fn get_parameters(&self) -> &dyn DocumentType;
 
     ///
     ///
     /// @param source input object or Document describing parameters.
     /// @return
     ///
-    fn open(&self, source: dyn Readable) -> Result<Box<dyn Store>, Error>;
+    fn open(&self, source: dyn Readable) -> Result<Box<dyn Store>, String>;
 
 }
