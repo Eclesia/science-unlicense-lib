@@ -4,5 +4,5 @@
 pub mod image;
 
 fn main() {
-    image::createimage::run()
+    image::listformats::main()
 }

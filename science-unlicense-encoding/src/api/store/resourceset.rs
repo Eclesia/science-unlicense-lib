@@ -6,6 +6,7 @@
 use crate::api::store::Resource;
 use std::any::TypeId;
 use science_unlicense_common::api::Polymorph;
+use std::error::Error;
 
 pub struct ResourceSetHandle {
     handle : Box<dyn ResourceSet>
@@ -34,7 +35,7 @@ pub trait ResourceSet {
     ///
     /// List resources available
     ///
-    fn get_elements(&self) -> Result<Vec<Box<dyn Resource>>, String>;
+    fn get_elements(&self) -> Result<Vec<Box<dyn Resource>>, Box<dyn Error>>;
 
     ///
     /// Find resource with given id.
@@ -42,5 +43,5 @@ pub trait ResourceSet {
     /// @param id, not null
     /// @return resource or null if no resource for given identifier found
     ///
-    fn find(&self, id: &str) -> Result<Box<dyn Resource>, String>;
+    fn find(&self, id: &str) -> Result<Box<dyn Resource>, Box<dyn Error>>;
 }

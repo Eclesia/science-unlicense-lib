@@ -11,3 +11,6 @@ publish = true
 
 [dependencies]
 science-unlicense-encoding = { path = "../science-unlicense-encoding" }
+science-unlicense-image = { path = "../science-unlicense-image" }
+inventory = "0.1.10"
+linkme = "0.2.6"

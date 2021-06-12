@@ -5,6 +5,7 @@
 use std::any::{Any, TypeId};
 use science_unlicense_encoding::api::store::{SimpleResource, Store, ResourceSetHandle, ResourceSet, Resource};
 use science_unlicense_common::api::Polymorph;
+use std::error::Error;
 
 fn main() {
 
@@ -36,11 +37,11 @@ impl Resource for MyFE {
 
 impl ResourceSet for MyFE {
 
-    fn get_elements(&self) -> Result<Vec<Box<dyn Resource>>, String> {
+    fn get_elements(&self) -> Result<Vec<Box<dyn Resource>>, Box<dyn Error>> {
         todo!()
     }
 
-    fn find(&self, id: &str) -> Result<Box<dyn Resource>, String> {
+    fn find(&self, id: &str) -> Result<Box<dyn Resource>, Box<dyn Error>> {
         todo!()
     }
 }

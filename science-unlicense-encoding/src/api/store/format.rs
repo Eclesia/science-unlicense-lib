@@ -2,9 +2,10 @@
 // Public Domain - unlicense.science
 //
 
-use std::io::Error;
 use crate::api::io::Readable;
 use crate::api::store::Store;
+use std::error::Error;
+use std::fs::File;
 
 ///
 /// A format define a group of bytes organize in a defined structure.
@@ -99,7 +100,7 @@ pub trait Format {
     /// @return true if input can be decoded by this format.
     /// @throws science.unlicense.encoding.api.io.IOException
     ///
-    fn can_decode(&self, input: &mut dyn Readable) -> Result<bool, Error>;
+    fn can_decode(&self, input: &mut dyn Readable) -> Result<bool, Box<dyn Error>>;
 
     ///
     /// Finding the expected end of the current format can have multiple use.
@@ -113,7 +114,7 @@ pub trait Format {
     ///
     /// Formats are allowed to return -1 in any case.
     ///
-    fn search_end(&self, input: &mut dyn Readable, fullscan: bool) -> Result<u64, Error>;
+    fn search_end(&self, input: &mut dyn Readable, fullscan: bool) -> Result<u64, Box<dyn Error>>;
 
     ///
     /// Get a description of parameters used to open a new store.
@@ -127,6 +128,18 @@ pub trait Format {
     /// @param source input object or Document describing parameters.
     /// @return
     ///
-    fn open(&self, source: dyn Readable) -> Result<Box<dyn Store>, Error>;
+    fn open(&self, source: File) -> Result<Box<dyn Store>, Box<dyn Error>>;
 
+}
+
+pub struct FormatRegistryEntry {
+    pub name : String
+}
+
+// collect all formats registered
+inventory::collect!(FormatRegistryEntry);
+
+inventory::submit! {
+    let str : String = String::from("local");
+    FormatRegistryEntry{name:str}
 }
