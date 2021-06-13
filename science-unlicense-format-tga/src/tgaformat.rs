@@ -3,18 +3,13 @@
 //
 
 use science_unlicense_encoding::api::store::{Format, Store, FormatRegistryEntry};
-use science_unlicense_encoding::api::store::formats::FORMATS;
 use science_unlicense_encoding::api::io::Readable;
 use std::error::Error;
 use std::fs::File;
-use linkme::distributed_slice;
 
 pub struct TGAFormat {
 
 }
-
-#[distributed_slice(FORMATS)]
-static TGA_FORMAT: fn() -> FormatRegistryEntry = format_tga;
 
 
 fn format_tga() -> FormatRegistryEntry {

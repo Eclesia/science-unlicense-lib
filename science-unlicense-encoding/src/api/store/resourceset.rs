@@ -1,8 +1,6 @@
 //
 // Public Domain - unlicense.science
 //
-
-
 use crate::api::store::Resource;
 use std::any::TypeId;
 use science_unlicense_common::api::Polymorph;

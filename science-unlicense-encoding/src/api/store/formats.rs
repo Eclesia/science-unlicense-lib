@@ -3,14 +3,7 @@
 //
 
 use crate::api::store::FormatRegistryEntry;
-use linkme::distributed_slice;
-
-#[distributed_slice]
-pub static FORMATS: [fn() -> FormatRegistryEntry] = [..];
-
-#[distributed_slice(FORMATS)]
-static LOCAL_FORMAT: fn() -> FormatRegistryEntry = format_local;
-
+use science_unlicense_common::api::registry;
 
 fn format_local() -> FormatRegistryEntry {
     let str : String = String::from("local2");
@@ -18,15 +11,21 @@ fn format_local() -> FormatRegistryEntry {
 }
 
 pub fn formats2() {
-    for flag in FORMATS {
-        println!("-{}", flag().name);
-    }
 }
 
 pub fn formats() {
-    for flag in inventory::iter::<FormatRegistryEntry> {
-        println!("-{}", flag.name);
+
+    let modules = registry::getModules();
+
+    let ite = modules.iter();
+    for module in ite {
+        //search for ImageFormat types
+        let q = module.entries.iter();
+        for poly in q {
+        }
+        println!("found {}", module.name);
     }
+
 }
 
 

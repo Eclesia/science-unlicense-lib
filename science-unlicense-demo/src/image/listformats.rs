@@ -1,11 +1,29 @@
 use science_unlicense_encoding::api::store::formats::formats;
-//use science_unlicense_format_tga::TGAFormat;
+use science_unlicense_common::api::registry;
+use science_unlicense_encoding::api::store::FormatHandle;
+use std::borrow::Borrow;
 
 pub fn main() {
-    println!("HELLO");
+    formats2();
+}
 
-    //let format = TGAFormat::new();
-    println!("HELLO 2");
+pub fn formats2() {
 
-    formats();
+    let modules = registry::getModules();
+
+    let ite = modules.iter();
+    for module in ite {
+        println!("module {}", module.name);
+
+        //search for ImageFormat types
+        let q = module.entries.iter();
+        for poly in q {
+            let cdt = FormatHandle::cast(poly.borrow());
+            match cdt {
+                Some(tt) => println!("found format !"),
+                _ => println!("not found")
+            }
+        }
+    }
+
 }

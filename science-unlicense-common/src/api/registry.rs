@@ -1,18 +1,42 @@
 use std::mem::transmute;
 use std::ptr;
+use crate::api::Module;
 
 // singleton instance of the registry
 static mut _data:*const Registry = 0 as *const Registry;
 
 
-pub fn getModules() -> Vec<String> {
+pub fn getModules<'t>() -> Vec<&'t Module> {
+
+    let mut v: Vec<&Module> = vec![];
+    unsafe {
+        let registry = get();
+        let ite = registry.modules.iter();
+        for x in ite {
+            v.push(x);
+        }
+    }
+    return v;
+}
+
+pub fn getModuleNames() -> Vec<String> {
 
     let mut v: Vec<String> = vec![];
     unsafe {
         let registry = get();
-        v = registry.modules();
+        let ite = registry.modules.iter();
+        for x in ite {
+            v.push(x.name.clone());
+        }
     }
     return v;
+}
+
+pub fn registerModule(module: Module) {
+    unsafe {
+        let registry = get();
+        registry.register(module);
+    }
 }
 
 pub unsafe fn getRegistry<'a>() -> &'a mut Registry {
@@ -21,18 +45,14 @@ pub unsafe fn getRegistry<'a>() -> &'a mut Registry {
 
 
 pub struct Registry {
-    modules: Vec<String>
+    modules: Vec<Module>
 }
 
 impl Registry {
 
-    pub fn register(&mut self, name:String) {
-        println!("Write to static");
-        self.modules.push(name);
-    }
-
-    pub fn modules(&self) -> Vec<String>{
-        return self.modules.clone();
+    pub fn register(&mut self, module:Module) {
+        println!("Registering module {}", module.name);
+        self.modules.push(module);
     }
 
 }

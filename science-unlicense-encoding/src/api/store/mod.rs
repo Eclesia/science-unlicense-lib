@@ -3,6 +3,7 @@
 //
 
 mod format;
+mod formathandle;
 pub mod formats;
 mod resource;
 mod resourceset;
@@ -11,6 +12,7 @@ mod simpleresource;
 
 pub use format::Format;
 pub use format::FormatRegistryEntry;
+pub use formathandle::FormatHandle;
 pub use resource::Resource;
 pub use resourceset::ResourceSet;
 pub use resourceset::ResourceSetHandle;

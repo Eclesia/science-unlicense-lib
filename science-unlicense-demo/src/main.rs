@@ -1,8 +1,10 @@
 //
 // Public Domain - unlicense.science
 //
-pub mod image;
+mod image;
+use science_unlicense_demo::init;
 
 fn main() {
+    init();
     image::listformats::main()
 }

@@ -135,11 +135,3 @@ pub trait Format {
 pub struct FormatRegistryEntry {
     pub name : String
 }
-
-// collect all formats registered
-inventory::collect!(FormatRegistryEntry);
-
-inventory::submit! {
-    let str : String = String::from("local");
-    FormatRegistryEntry{name:str}
-}
