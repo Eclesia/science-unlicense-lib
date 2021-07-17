@@ -16,4 +16,4 @@ pub use tuple::Tuple;
 pub use vector::Vector;
 pub use vector2u32::Vector2u32;
 
-static MESSAGE_INVALID_COORD: &'static str = "Invalid coordinate {}";
+pub static MESSAGE_INVALID_COORD: &'static str = "Invalid coordinate {}";

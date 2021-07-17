@@ -46,7 +46,7 @@ impl TGAReader {
         self.image_spec_width = ds.read_u16()?;
         self.image_spec_height = ds.read_u16()?;
         self.image_spec_pixel_depth = ds.read_u8()?;
-        self.image_spec_descriptor = ds.read_s8()?;
+        self.image_spec_descriptor = ds.read_i8()?;
         //read ID
         self.id = ds.read_string(self.id_length as usize)?;
 
@@ -54,38 +54,38 @@ impl TGAReader {
         let flip_vertical = (self.image_spec_descriptor & 0x20) == 0;
         let flip_horizontal = (self.image_spec_descriptor & 0x10) != 0;
 
-        let mut image_spec_pixel_depth = self.image_spec_pixeldepth;
+        let mut image_spec_pixel_depth = self.image_spec_pixel_depth;
         if image_spec_pixel_depth % 8 != 0 {
             return Result::Err(Error::new(ErrorKind::InvalidInput, "pixel depth unsupported, must be a module of 8."));
         }
         image_spec_pixel_depth = image_spec_pixel_depth / 8;
 
         //read colormap
-        let colorIndex = null; //ColorIndex
-        if self.color_map_type != 0 {
-            if self.color_map_spec_color_map_entry_size % 8 != 0 {
+        // let colorIndex = null; //ColorIndex
+        // if self.color_map_type != 0 {
+        //     if self.color_map_spec_color_map_entry_size % 8 != 0 {
+        //
+        //         throw new IOException(ds, "colormap of size not a module of 8 not supported.");
+        //     }
+        //     final byte[][] colorMap = new byte[self.color_map_spec_color_map_length][color_map_spec_color_map_entry_size/8];
+        //     for (int i=0;i<color_map_spec_color_map_length;i++) {
+        //         ds.readFully(colorMap[i]);
+        //     }
+        //     //colors are in BVR order
+        //     final Color[] palette = new Color[color_map_spec_color_map_length];
+        //     for (int i=0;i<palette.length;i++){
+        //         if (colorMap[0].length==3){
+        //             palette[i] = new ColorRGB(colorMap[i][2]&0xFF, colorMap[i][1]&0xFF, colorMap[i][0]&0xFF);
+        //         } else if (colorMap[0].length==4){
+        //             palette[i] = new ColorRGB(colorMap[i][2]&0xFF, colorMap[i][1]&0xFF, colorMap[i][0]&0xFF, colorMap[i][3]&0xFF);
+        //         } else {
+        //             throw new IOException(ds, "unexpected colormap tuple size"+colorMap[0].length);
+        //         }
+        //     }
+        //     colorIndex = new ColorIndex(palette);
+        // }
 
-                throw new IOException(ds, "colormap of size not a module of 8 not supported.");
-            }
-            final byte[][] colorMap = new byte[self.color_map_spec_color_map_length][color_map_spec_color_map_entry_size/8];
-            for (int i=0;i<color_map_spec_color_map_length;i++) {
-                ds.readFully(colorMap[i]);
-            }
-            //colors are in BVR order
-            final Color[] palette = new Color[color_map_spec_color_map_length];
-            for (int i=0;i<palette.length;i++){
-                if (colorMap[0].length==3){
-                    palette[i] = new ColorRGB(colorMap[i][2]&0xFF, colorMap[i][1]&0xFF, colorMap[i][0]&0xFF);
-                } else if (colorMap[0].length==4){
-                    palette[i] = new ColorRGB(colorMap[i][2]&0xFF, colorMap[i][1]&0xFF, colorMap[i][0]&0xFF, colorMap[i][3]&0xFF);
-                } else {
-                    throw new IOException(ds, "unexpected colormap tuple size"+colorMap[0].length);
-                }
-            }
-            colorIndex = new ColorIndex(palette);
-        }
-
-        return 0;
+        return Result::Err(Error::new(ErrorKind::Other, "Not implemented yet"));
     }
 
     // //read image data
