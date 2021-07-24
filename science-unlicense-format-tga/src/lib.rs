@@ -2,13 +2,12 @@
 // Public Domain - unlicense.science
 //
 
-use science_unlicense_encoding::api::store::{Format, Store, FormatRegistryEntry, FormatHandle, SimpleResource};
+use science_unlicense_encoding::api::store::{FormatRegistryEntry, FormatHandle, SimpleResource};
 
 mod tgaformat;
 mod tgareader;
 
 pub use crate::tgaformat::TGAFormat;
-use std::borrow::Borrow;
 use science_unlicense_common::api::{Module, Polymorph};
 use science_unlicense_common::api::registry;
 

@@ -7,6 +7,7 @@ mod module;
 pub mod logging;
 pub mod messageerror;
 pub mod model;
+pub mod number;
 pub mod registry;
 
 pub use logger::Logger;

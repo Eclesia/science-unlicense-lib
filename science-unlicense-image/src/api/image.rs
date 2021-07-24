@@ -50,12 +50,10 @@ pub trait Image {
 
     fn get_tuple(&self, coordinate: Box<&dyn Tuple>, model: Box<&dyn ImageModel>) -> Box<dyn Tuple>;
 
-    Color getColor(Tuple coordinate);
 
-    /**
+    /*
      * Raw image data buffer.
      *
      * @return Buffer
      */
-    Buffer getDataBuffer();
 }

@@ -4,7 +4,6 @@
 
 use std::io::{Read, ErrorKind};
 use std::io::Error;
-use std::error::Error as GE;
 
 pub enum Endianess {
     Big,
@@ -123,6 +122,6 @@ impl DataRead {
         return match String::from_utf8(buf) {
             Ok(v) => return Result::Ok(v),
             Err(e) => return Result::Err(Error::new(ErrorKind::InvalidData, e))
-        };
+        }
     }
 }

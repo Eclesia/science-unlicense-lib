@@ -21,3 +21,4 @@ impl SampleSystem for UndefinedSystem {
         return self.nb_components;
     }
 }
+
