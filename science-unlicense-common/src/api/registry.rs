@@ -3,10 +3,10 @@ use std::ptr;
 use crate::api::Module;
 
 // singleton instance of the registry
-static mut _data:*const Registry = 0 as *const Registry;
+static mut _DATA:*const Registry = 0 as *const Registry;
 
 
-pub fn getModules<'t>() -> Vec<&'t Module> {
+pub fn get_modules<'t>() -> Vec<&'t Module> {
 
     let mut v: Vec<&Module> = vec![];
     unsafe {
@@ -19,7 +19,7 @@ pub fn getModules<'t>() -> Vec<&'t Module> {
     return v;
 }
 
-pub fn getModuleNames() -> Vec<String> {
+pub fn get_module_names() -> Vec<String> {
 
     let mut v: Vec<String> = vec![];
     unsafe {
@@ -32,17 +32,16 @@ pub fn getModuleNames() -> Vec<String> {
     return v;
 }
 
-pub fn registerModule(module: Module) {
+pub fn register_module(module: Module) {
     unsafe {
         let registry = get();
         registry.register(module);
     }
 }
 
-pub unsafe fn getRegistry<'a>() -> &'a mut Registry {
+pub unsafe fn get_registry<'a>() -> &'a mut Registry {
     return get();
 }
-
 
 pub struct Registry {
     modules: Vec<Module>
@@ -58,14 +57,17 @@ impl Registry {
 }
 
 unsafe fn get<'a>() -> &'a mut Registry {
-    if _data == ptr::null::<Registry>() {
-        _data = transmute(Box::new(Registry { modules: vec![] }));
+    if _DATA == ptr::null::<Registry>() {
+        _DATA = transmute(Box::new(Registry { modules: vec![] }));
     }
-    return transmute(_data);
+    return transmute(_DATA);
 }
 
+// `#[allow(dead_code)]` is an attribute that disables the `dead_code` lint
+// this is normal
+#[allow(dead_code)]
 unsafe fn release() {
-    ptr::read::<Registry>(_data);
+    ptr::read::<Registry>(_DATA);
 }
 
 impl Drop for Registry {

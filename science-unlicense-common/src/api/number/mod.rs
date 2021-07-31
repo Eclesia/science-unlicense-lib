@@ -7,4 +7,5 @@ pub mod primitive;
 
 
 pub use arithmetic::Arithmetic;
+pub use arithmetic::Operand;
 pub use arithmetictype::ArithmeticType;

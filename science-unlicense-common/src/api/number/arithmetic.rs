@@ -1,21 +1,19 @@
 //
 // Public Domain - unlicense.science
 //
-
-
-//public static final int OP_SIN   = 1;
-//public static final int OP_COS   = 2;
-//public static final int OP_TAN   = 3;
-//public static final int OP_ASIN  = 4;
-//public static final int OP_ACOS  = 5;
-//public static final int OP_ATAN  = 6;
-//public static final int OP_LOG   = 7;
-//public static final int OP_LOG10 = 8;
-//public static final int OP_SQRT  = 9;
-//public static final int OP_CQRT  = 10;
+use crate::api::number::ArithmeticType;
 
 pub enum Operand {
-    SIN
+    SIN,
+    COS,
+    TAN,
+    ASIN,
+    ACOS,
+    ATAN,
+    LOG,
+    LOG10,
+    SQRT,
+    CQRT
 }
 
 ///
@@ -26,88 +24,87 @@ pub enum Operand {
 ///
 pub trait Arithmetic {
 
+    ///
+    /// Arithmetic type description.
+    ///
+    /// @return Arithmetic type, never null
+    ///
+    fn get_type(&self) -> Box<dyn ArithmeticType>;
 
-    /**
-     * Arithmetic type description.
-     *
-     * @return Arithmetic type, never null
-     */
-    fn get_type() -> Box<dyn ArithmeticType>;
+    ///
+    /// Addition.
+    ///
+    /// @param other value
+    /// @return this + other
+    ///
+    fn add(&self, other: Box<dyn Arithmetic>) -> Box<dyn Arithmetic>;
 
-    /**
-     * Addition.
-     *
-     * @param other value
-     * @return this + other
-     */
-    Arithmetic add(Arithmetic other);
+    ///
+    /// Subtraction.
+    ///
+    /// @param other value
+    /// @return this - other
+    ///
+    fn subtract(&self, other: Box<dyn Arithmetic>) -> Box<dyn Arithmetic>;
 
-    /**
-     * Subtraction.
-     *
-     * @param other value
-     * @return this - other
-     */
-    Arithmetic subtract(Arithmetic other);
+    ///
+    /// Multiplication.
+    ///
+    /// @param other value
+    /// @return this * other
+    ///
+    fn mult(&self, other: Box<dyn Arithmetic>) -> Box<dyn Arithmetic>;
 
-    /**
-     * Multiplication.
-     *
-     * @param other value
-     * @return this * other
-     */
-    Arithmetic mult(Arithmetic other);
+    ///
+    /// Division.
+    ///
+    /// @param other value
+    /// @return this / other
+    ///
+    fn divide(&self, other: Box<dyn Arithmetic>) -> Box<dyn Arithmetic>;
 
-    /**
-     * Division.
-     *
-     * @param other value
-     * @return this / other
-     */
-    Arithmetic divide(Arithmetic other);
+    ///
+    /// Zero: neutral element for additions.
+    ///
+    /// @return zero element
+    ///
+    fn zero(&self) -> Box<dyn Arithmetic>;
 
-    /**
-     * Zero: neutral element for additions.
-     *
-     * @return zero element
-     */
-    Arithmetic zero();
+    ///
+    /// Test if this is zero.
+    ///
+    /// @return true if this is zero
+    ///
+    fn is_zero(&self) -> bool;
 
-    /**
-     * Test if this is zero.
-     *
-     * @return true if this is zero
-     */
-    boolean isZero();
+    ///
+    /// One: neutral element for multiplications.
+    ///
+    /// @return one element
+    ///
+    fn one(&self) -> Box<dyn Arithmetic>;
 
-    /**
-     * One: neutral element for multiplications.
-     *
-     * @return one element
-     */
-    Arithmetic one();
+    ///
+    /// Test if this is one.
+    ///
+    /// @return true if this is one
+    ///
+    fn is_one(&self) -> bool;
 
-    /**
-     * Test if this is one.
-     *
-     * @return true if this is one
-     */
-    boolean isOne();
+    ///
+    /// Power.
+    ///
+    /// @param n power
+    /// @return this ^ n
+    ///
+    fn pow(&self, n: i32) -> Box<dyn Arithmetic>;
 
-    /**
-     * Power.
-     *
-     * @param n power
-     * @return this ^ n
-     */
-    Arithmetic pow(int n);
-
-    /**
-     * Apply given operand.
-     *
-     * @param opCode
-     * @return
-     */
-    Arithmetic op(int opCode);
+    ///
+    /// Apply given operand.
+    ///
+    /// @param opCode
+    /// @return
+    ///
+    fn op(&self, operand: Operand) -> Box<dyn Arithmetic>;
 
 }

@@ -1,6 +1,9 @@
 //
 // Public Domain - unlicense.science
 //
+use crate::api::number::Arithmetic;
+use crate::api::number::primitive::Primitives;
+use std::any::TypeId;
 
 ///
 /// An arithmetic type defines a value class which can support the different arithmetic operations.
@@ -22,7 +25,7 @@ pub trait ArithmeticType {
     fn get_value_type(&self) -> TypeId;
 
     ///
-    /// @return Code from Primitive.*
+    /// @return Code from Primitives.*
     ///
-    fn get_primitive_code(&self) -> Primitive;
+    fn get_primitive_code(&self) -> Primitives;
 }

@@ -8,10 +8,9 @@ use science_unlicense_common::api::logging;
 use std::panic::panic_any;
 use crate::api::system::SampleSystem;
 use crate::api::system::samplesystems;
-use std::sync::Arc;
 
 pub struct Vector2u32 {
-    pub system: Arc<dyn SampleSystem>,
+    pub system: Box<dyn SampleSystem>,
     pub x: u32,
     pub y: u32,
 }
@@ -22,16 +21,16 @@ impl Vector2u32 {
     }
 
     pub fn new_data(x: u32, y: u32) -> Self {
-        return Vector2u32::new(Arc::new(samplesystems::create(2)), x, y);
+        return Vector2u32::new(Box::new(samplesystems::create(2)), x, y);
     }
 
-    pub fn new(system: Arc<dyn SampleSystem>, x: u32, y: u32) -> Self {
+    pub fn new(system: Box<dyn SampleSystem>, x: u32, y: u32) -> Self {
         return Vector2u32 { system:system, x: x, y: y };
     }
 }
 
 impl Tuple for Vector2u32 {
-    fn get_sample_system(&self) -> Arc<dyn SampleSystem> {
+    fn get_sample_system(&self) -> Box<dyn SampleSystem> {
         todo!()
     }
 
