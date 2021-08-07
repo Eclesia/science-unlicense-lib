@@ -2,7 +2,8 @@
 // Public Domain - unlicense.science
 //
 
-use crate::api::system::{UndefinedSystem};
+use crate::api::system::{UndefinedSystem, SampleSystem};
+use std::sync::Arc;
 
 ///
 /// Create a sample system.
@@ -11,6 +12,7 @@ use crate::api::system::{UndefinedSystem};
 /// @param nbComponents
 /// @return SampleSystem never null
 ///
-pub fn create(nb_components: u32) -> UndefinedSystem{
-    return UndefinedSystem::new(nb_components);
+pub fn create(nb_components: u32) -> Arc<dyn SampleSystem> {
+    //let x : SampleSystem = UndefinedSystem::new(nb_components);
+    return Arc::new(UndefinedSystem::new(nb_components));
 }

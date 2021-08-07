@@ -9,9 +9,10 @@ use std::panic::panic_any;
 use crate::api::system::SampleSystem;
 use crate::api::system::samplesystems;
 use science_unlicense_common::api::number::{ArithmeticType, Arithmetic};
+use std::sync::Arc;
 
 pub struct Vector2u32 {
-    pub system: Box<dyn SampleSystem>,
+    pub system: Arc<dyn SampleSystem>,
     pub x: u32,
     pub y: u32,
 }
@@ -23,24 +24,24 @@ impl Vector2u32 {
     }
 
     pub fn new_data(x: u32, y: u32) -> Self {
-        return Vector2u32::new(Box::new(samplesystems::create(2)), x, y);
+        return Vector2u32::new(samplesystems::create(2), x, y);
     }
 
-    pub fn new_system(system: Box<dyn SampleSystem>) -> Self {
-        return Vector2u32 { system: system, x: 0, y: 0 };
+    pub fn new_system(system: Arc<dyn SampleSystem>) -> Self {
+        return Vector2u32 { system: system.clone(), x: 0, y: 0 };
     }
 
-    pub fn new(system: Box<dyn SampleSystem>, x: u32, y: u32) -> Self {
+    pub fn new(system: Arc<dyn SampleSystem>, x: u32, y: u32) -> Self {
         return Vector2u32 { system:system, x: x, y: y };
     }
 }
 
 impl Tuple for Vector2u32 {
-    fn get_sample_system(&self) -> Box<dyn SampleSystem> {
+    fn get_sample_system(&self) -> &Arc<dyn SampleSystem> {
         todo!()
     }
 
-    fn get_numeric_type(&self) -> Box<dyn ArithmeticType> {
+    fn get_numeric_type(&self) -> &Arc<dyn ArithmeticType> {
         todo!()
     }
 

@@ -4,14 +4,20 @@
 use crate::api::tuple::{TupleArray, TupleSpace};
 use science_unlicense_math::api::Scalar1f32;
 use science_unlicense_math::api::Tuple;
+use std::sync::Arc;
+use science_unlicense_math::api::system::SampleSystem;
+use science_unlicense_math::api::system::samplesystems;
 
 pub struct TupleArray1f32 {
+    system: Arc<dyn SampleSystem>,
     values: Vec<f32>,
 }
 
 impl TupleArray1f32 {
     pub fn new(size: u32) -> Self {
+        let ss : Arc<dyn SampleSystem> = samplesystems::create(1);
         return TupleArray1f32 {
+            system: ss,
             values: vec![0f32; size as usize],
         };
     }

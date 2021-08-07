@@ -28,7 +28,7 @@ pub fn init() {
         name: String::from("tga"),
         entries: vec![b]
     };
-    registry::registerModule(module);
+    registry::register_module(module);
 }
 
 #[cfg(test)]

@@ -9,7 +9,7 @@ pub fn main() {
 
 pub fn formats2() {
 
-    let modules = registry::getModules();
+    let modules = registry::get_modules();
 
     let ite = modules.iter();
     for module in ite {

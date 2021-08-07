@@ -5,6 +5,7 @@ use crate::api::system::SampleSystem;
 use crate::api::vectors;
 use science_unlicense_common::api::number::ArithmeticType;
 use science_unlicense_common::api::number::Arithmetic;
+use std::sync::Arc;
 
 ///
 /// A tuple is an ordered list of numeric values.
@@ -14,12 +15,12 @@ pub trait Tuple {
     ///
     /// Get description of tuple samples.
     ///
-    fn get_sample_system(&self) -> Box<dyn SampleSystem>;
+    fn get_sample_system(&self) -> &Arc<dyn SampleSystem>;
 
     ///
     /// Natural numeric type stored in this tuple.
     ///
-    fn get_numeric_type(&self) -> Box<dyn ArithmeticType>;
+    fn get_numeric_type(&self) -> &Arc<dyn ArithmeticType>;
 
     ///
     /// Size of the Tuple
@@ -375,7 +376,7 @@ pub trait Tuple {
      *
      * @param toCopy tuple to copy
      */
-    fn set_from_tuple(&mut self, to_copy: Box<dyn Tuple>) {
+    fn set_from_tuple(&mut self, to_copy: &Box<dyn Tuple>) {
         let size = self.get_sample_count();
         for i in 0..size {
             self.set(i, to_copy.get(i));

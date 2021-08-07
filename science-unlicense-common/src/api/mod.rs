@@ -9,6 +9,7 @@ pub mod messageerror;
 pub mod model;
 pub mod number;
 pub mod registry;
+pub mod asserts;
 
 pub use logger::Logger;
 pub use messageerror::MessageError;

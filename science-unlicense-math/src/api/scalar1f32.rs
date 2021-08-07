@@ -9,38 +9,41 @@ use std::panic::panic_any;
 use crate::api::system::SampleSystem;
 use crate::api::system::samplesystems;
 use science_unlicense_common::api::number::{ArithmeticType, Arithmetic};
+use std::sync::Arc;
 
 pub struct Scalar1f32 {
-    pub system: Box<dyn SampleSystem>,
+    pub system: Arc<dyn SampleSystem>,
     pub x: f32,
 }
 
 impl Scalar1f32 {
 
     pub fn new_empty() -> Self {
-        return Scalar1f32::new(Box::new(samplesystems::create(1)), 0f32);
+        let ss : Arc<dyn SampleSystem> = samplesystems::create(1);
+        return Scalar1f32::new(ss, 0f32);
     }
 
     pub fn new_data(x: f32) -> Self {
-        return Scalar1f32::new(Box::new(samplesystems::create(1)),  x);
+        let ss : Arc<dyn SampleSystem> = samplesystems::create(1);
+        return Scalar1f32::new(ss,  x);
     }
 
-    pub fn new_system(system: Box<dyn SampleSystem>) -> Self {
-        return Scalar1f32 { system: system, x: 0f32 };
+    pub fn new_system(system: Arc<dyn SampleSystem>) -> Self {
+        return Scalar1f32 { system: system.clone(), x: 0f32 };
     }
 
-    pub fn new(system: Box<dyn SampleSystem>, x: f32) -> Self {
-        return Scalar1f32 { system: system, x: x };
+    pub fn new(system: Arc<dyn SampleSystem>, x: f32) -> Self {
+        return Scalar1f32 { system: system.clone(), x: x };
     }
 }
 
 impl Tuple for Scalar1f32 {
 
-    fn get_sample_system(&self) -> Box<dyn SampleSystem> {
-        return self.system.clone();
+    fn get_sample_system(&self) -> &Arc<dyn SampleSystem> {
+        return &self.system;
     }
 
-    fn get_numeric_type(&self) -> Box<dyn ArithmeticType> {
+    fn get_numeric_type(&self) -> &Arc<dyn ArithmeticType> {
         panic!("todo");
     }
 
@@ -55,7 +58,7 @@ impl Tuple for Scalar1f32 {
         }
     }
 
-    fn get_number(&self, index: u32) -> Box<dyn Arithmetic> {
+    fn get_number(&self, _index: u32) -> Box<dyn Arithmetic> {
         panic!("todo");
     }
 
@@ -66,7 +69,7 @@ impl Tuple for Scalar1f32 {
         }
     }
 
-    fn set_number(&mut self, index: u32, value: Box<dyn Arithmetic>) {
+    fn set_number(&mut self, _index: u32, value: Box<dyn Arithmetic>) {
         panic!("todo");
     }
 
