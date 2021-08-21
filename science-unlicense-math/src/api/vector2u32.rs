@@ -57,7 +57,7 @@ impl Tuple for Vector2u32 {
         }
     }
 
-    fn get_number(&self, index: u32) -> Box<dyn Arithmetic> {
+    fn get_number(&self, _index: u32) -> Box<dyn Arithmetic> {
         todo!()
     }
 
@@ -69,7 +69,7 @@ impl Tuple for Vector2u32 {
         }
     }
 
-    fn set_number(&mut self, index: u32, value: Box<dyn Arithmetic>) {
+    fn set_number(&mut self, _index: u32, _value: Box<dyn Arithmetic>) {
         todo!()
     }
 }

@@ -69,7 +69,7 @@ impl Tuple for Scalar1f32 {
         }
     }
 
-    fn set_number(&mut self, _index: u32, value: Box<dyn Arithmetic>) {
+    fn set_number(&mut self, _index: u32, _value: Box<dyn Arithmetic>) {
         panic!("todo");
     }
 

@@ -1,6 +1,7 @@
 use crate::api::Tuple;
 use science_unlicense_common::api::asserts;
 use std::panic::catch_unwind;
+use science_unlicense_common::api::asserts::{NO_MESSAGE, assert_equals_f64};
 
 const TOLERANCE : f64 = 0.0000001;
 const UNVALID_INDEX_EXPECTED : &str = "Accessing value our of tuple size must cause an InvalidIndexException";
@@ -37,8 +38,7 @@ pub trait AbstractTupleTest {
 
         for c in 0..dim {
             let value = tuple.get(c);
-            asserts.assert_equals_f64(value, expectedValue, TOLERANCE);
-            //assert_eq!(expectedValue, value, TOLERANCE, "Value different at ["+c+"]");
+            assert_equals_f64(value, expectedValue, TOLERANCE, "Value different at ["+c+"]");
         }
 
         //assertTrue(tuple.isAll(expectedValue));
@@ -61,7 +61,7 @@ pub trait AbstractTupleTest {
         //test out of range
         //tuple.set(-1, 10.0);
         //panic!(UNVALID_INDEX_EXPECTED);
-        catch_unwind(|| tuple.set(dim, 10.0));
+        //catch_unwind(|| tuple.set(dim, 10.0));
     }
 
     fn testEquality(&self, tuple: &mut Box<dyn Tuple>) {
