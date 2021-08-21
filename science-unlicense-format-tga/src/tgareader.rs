@@ -3,31 +3,49 @@
 //
 
 use science_unlicense_image::api::Image;
-use science_unlicense_common::api::MessageError;
 use science_unlicense_encoding::api::io::DataRead;
 use std::io::{Read, ErrorKind};
 use std::io::Error;
 
 pub struct TGAReader {
-    id_length: u8,
-    color_map_type: u8,
-    image_type : u8,
+    pub id_length: u8,
+    pub color_map_type: u8,
+    pub image_type : u8,
     //colormap spec : 5 bytes
-    color_map_spec_first_entry_index: u16,
-    color_map_spec_color_map_length: u16,
-    color_map_spec_color_map_entry_size: u8,
+    pub color_map_spec_first_entry_index: u16,
+    pub color_map_spec_color_map_length: u16,
+    pub color_map_spec_color_map_entry_size: u8,
     //image spec : 10 bytes
-    image_spec_x_origin: u16,
-    image_spec_y_origin: u16,
-    image_spec_width: u16,
-    image_spec_height: u16,
-    image_spec_pixel_depth: u8,
-    image_spec_descriptor: i8,
-    id : String
+    pub image_spec_x_origin: u16,
+    pub image_spec_y_origin: u16,
+    pub image_spec_width: u16,
+    pub image_spec_height: u16,
+    pub image_spec_pixel_depth: u8,
+    pub image_spec_descriptor: i8,
+    pub id : String
 }
 
 impl TGAReader {
 
+    pub fn new() -> Self {
+        return TGAReader { 
+            id_length: 0,
+            color_map_type: 0,
+            image_type: 0,
+            color_map_spec_first_entry_index: 0,
+            color_map_spec_color_map_length: 0,
+            color_map_spec_color_map_entry_size: 0,
+            image_spec_x_origin: 0,
+            image_spec_y_origin: 0,
+            image_spec_width: 0,
+            image_spec_height: 0,
+            image_spec_pixel_depth: 0,
+            image_spec_descriptor: 0,
+            id: String::from(""),
+        };
+    }
+
+    /// Read image pixels
     pub fn read(&mut self, stream : Box<dyn Read>) -> Result<Box<dyn Image>, Error> {
         let mut ds = DataRead::new(stream);
 
@@ -51,14 +69,14 @@ impl TGAReader {
         self.id = ds.read_string(self.id_length as usize)?;
 
         //read image datas
-        let flip_vertical = (self.image_spec_descriptor & 0x20) == 0;
-        let flip_horizontal = (self.image_spec_descriptor & 0x10) != 0;
+        let _flip_vertical = (self.image_spec_descriptor & 0x20) == 0;
+        let _flip_horizontal = (self.image_spec_descriptor & 0x10) != 0;
 
-        let mut image_spec_pixel_depth = self.image_spec_pixel_depth;
-        if image_spec_pixel_depth % 8 != 0 {
+        let mut _image_spec_pixel_depth = self.image_spec_pixel_depth;
+        if _image_spec_pixel_depth % 8 != 0 {
             return Result::Err(Error::new(ErrorKind::InvalidInput, "pixel depth unsupported, must be a module of 8."));
         }
-        image_spec_pixel_depth = image_spec_pixel_depth / 8;
+        _image_spec_pixel_depth = _image_spec_pixel_depth / 8;
 
         //read colormap
         // let colorIndex = null; //ColorIndex

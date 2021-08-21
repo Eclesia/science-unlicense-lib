@@ -2,12 +2,13 @@
 // Public Domain - unlicense.science
 //
 
-use science_unlicense_encoding::api::store::{FormatRegistryEntry, FormatHandle, SimpleResource};
+use science_unlicense_encoding::api::store::{FormatHandle, SimpleResource};
 
 mod tgaformat;
 mod tgareader;
 
 pub use crate::tgaformat::TGAFormat;
+pub use crate::tgareader::TGAReader;
 use science_unlicense_common::api::{Module, Polymorph};
 use science_unlicense_common::api::registry;
 
@@ -16,7 +17,6 @@ use science_unlicense_common::api::registry;
 ///
 pub fn init() {
     science_unlicense_image::init();
-    let entry = FormatRegistryEntry{name: String::from("tga")};
 
     let f = TGAFormat::new();
     let handle = FormatHandle::new(Box::new(f));

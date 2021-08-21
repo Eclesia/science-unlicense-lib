@@ -2,19 +2,14 @@
 // Public Domain - unlicense.science
 //
 
-use science_unlicense_encoding::api::store::{Format, Store, FormatRegistryEntry};
+use science_unlicense_encoding::api::store::{Format, Store};
 use science_unlicense_encoding::api::io::Readable;
 use std::error::Error;
 use std::fs::File;
+use crate::TGAReader;
 
 pub struct TGAFormat {
 
-}
-
-
-fn format_tga() -> FormatRegistryEntry {
-    let str : String = String::from("tga");
-    return FormatRegistryEntry{name:str};
 }
 
 impl TGAFormat {
@@ -58,11 +53,11 @@ impl Format for TGAFormat {
         todo!()
     }
 
-    fn can_decode(&self, input: &mut dyn Readable) -> Result<bool, Box<dyn Error>> {
+    fn can_decode(&self, _input: &mut dyn Readable) -> Result<bool, Box<dyn Error>> {
         todo!()
     }
 
-    fn search_end(&self, input: &mut dyn Readable, fullscan: bool) -> Result<u64, Box<dyn Error>> {
+    fn search_end(&self, _input: &mut dyn Readable, _fullscan: bool) -> Result<u64, Box<dyn Error>> {
         todo!()
     }
 
@@ -70,7 +65,8 @@ impl Format for TGAFormat {
         todo!()
     }
 
-    fn open(&self, source: File) -> Result<Box<dyn Store>, Box<dyn Error>> {
+    fn open(&self, _source: File) -> Result<Box<dyn Store>, Box<dyn Error>> {
+        let _reader = TGAReader::new();
         todo!()
     }
 }

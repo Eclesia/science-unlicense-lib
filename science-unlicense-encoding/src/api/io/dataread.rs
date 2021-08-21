@@ -119,7 +119,7 @@ impl DataRead {
     pub fn read_string(&mut self, bytes_to_read : usize) -> Result<String,Error>{
         let mut buf = vec![0u8; bytes_to_read];
         self.input.read_exact(&mut buf)?;
-        return match String::from_utf8(buf) {
+        match String::from_utf8(buf) {
             Ok(v) => return Result::Ok(v),
             Err(e) => return Result::Err(Error::new(ErrorKind::InvalidData, e))
         }

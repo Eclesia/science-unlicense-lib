@@ -5,14 +5,6 @@
 use crate::api::store::FormatRegistryEntry;
 use science_unlicense_common::api::registry;
 
-fn format_local() -> FormatRegistryEntry {
-    let str : String = String::from("local2");
-    return FormatRegistryEntry{name:str};
-}
-
-pub fn formats2() {
-}
-
 pub fn formats() {
 
     let modules = registry::get_modules();
@@ -21,7 +13,7 @@ pub fn formats() {
     for module in ite {
         //search for ImageFormat types
         let q = module.entries.iter();
-        for poly in q {
+        for _poly in q {
         }
         println!("found {}", module.name);
     }

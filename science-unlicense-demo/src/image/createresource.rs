@@ -3,11 +3,11 @@
 //
 
 use std::any::{Any, TypeId};
-use science_unlicense_encoding::api::store::{SimpleResource, Store, ResourceSetHandle, ResourceSet, Resource};
+use science_unlicense_encoding::api::store::{SimpleResource, ResourceSetHandle, ResourceSet, Resource};
 use science_unlicense_common::api::Polymorph;
 use std::error::Error;
 
-fn main() {
+pub fn main() {
 
     let mut res = SimpleResource::new();
     let t = MyFE{};
@@ -17,7 +17,7 @@ fn main() {
     let b = ResourceSetHandle::cast(&res);
 
     match b {
-        Some(tt) => println!("found"),
+        Some(_rs) => println!("found"),
         _ => println!("not found")
     }
 }
@@ -26,7 +26,7 @@ struct MyFE {
 }
 
 impl Polymorph for MyFE {
-    fn get(&self, key: &TypeId) -> Option<&Box<dyn Any>> {
+    fn get(&self, _key: &TypeId) -> Option<&Box<dyn Any>> {
         todo!()
     }
 }
@@ -41,7 +41,7 @@ impl ResourceSet for MyFE {
         todo!()
     }
 
-    fn find(&self, id: &str) -> Result<Box<dyn Resource>, Box<dyn Error>> {
+    fn find(&self, _id: &str) -> Result<Box<dyn Resource>, Box<dyn Error>> {
         todo!()
     }
 }
