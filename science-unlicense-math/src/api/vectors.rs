@@ -18,11 +18,11 @@ pub fn create_by_type(sample_system: &Arc<dyn SampleSystem>, datatype: Primitive
     match size {
         1 => match datatype {
             Primitives::FLOAT32 => return Box::new(Scalar1f32::new_system(sample_system.clone())),
-            _ => panic!("Unsupported"),
+            _ => panic!("Unsupported 1"),
         },
         2 => match datatype {
             Primitives::UINT32 => return Box::new(Vector2u32::new_system(sample_system.clone())),
-            _ => panic!("Unsupported"),
+            _ => panic!("Unsupported "),
         },
         _ => panic!("Unsupported"),
     }

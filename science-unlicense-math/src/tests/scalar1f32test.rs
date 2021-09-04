@@ -13,13 +13,12 @@ impl AbstractTupleTest for Scalar1f32Test {
     }
 
     fn create(&self, dim: u32) -> Box<dyn Tuple> {
-        return match dim {
+        match dim {
             1 => return Box::new(Scalar1f32::new_empty()),
             _ => panic!("Unexpected")
         }
     }
 }
-
 
 #[test]
 pub fn test() {

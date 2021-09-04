@@ -1,3 +1,5 @@
+use std::panic;
+use std::panic::UnwindSafe;
 
 ///
 /// Empty text.
@@ -45,4 +47,21 @@ pub fn assert_false(value : bool, message : &str) {
     if value {
         panic!("Expected false but was {}. {}", value, message);
     }
+}
+
+///
+/// Assert given lambda will panic.
+/// This functions ensure the stack is not printed.printed
+/// 
+pub fn assert_error<F: FnOnce() -> R + UnwindSafe, R>(f: F, message : &str) {
+    // do not print the stack, we expect it.
+    let prev_hook = panic::take_hook();
+    panic::set_hook(Box::new(|_| {}));
+
+    let res = panic::catch_unwind(f);
+    match res {
+        Ok(_v) => panic!("Expected an error {}", message),
+        Err(_e) => (),
+    }
+    panic::set_hook(prev_hook);
 }

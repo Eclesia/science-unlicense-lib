@@ -61,7 +61,7 @@ pub trait Tuple {
     ///
     fn is_all(&self, value: f64) -> bool {
         for i in 0..self.get_sample_count() {
-            if self.get(i) == value {
+            if self.get(i) != value {
                 return false;
             }
         }

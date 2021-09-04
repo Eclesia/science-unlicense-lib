@@ -8,11 +8,14 @@ use science_unlicense_common::api::logging;
 use std::panic::panic_any;
 use crate::api::system::SampleSystem;
 use crate::api::system::samplesystems;
-use science_unlicense_common::api::number::{ArithmeticType, Arithmetic};
+use science_unlicense_common::api::number::ArithmeticType;
+use science_unlicense_common::api::number::Arithmetic;
+use science_unlicense_common::api::number;
 use std::sync::Arc;
 
 pub struct Scalar1f32 {
     pub system: Arc<dyn SampleSystem>,
+    pub arttype: Arc<dyn ArithmeticType>,
     pub x: f32,
 }
 
@@ -29,11 +32,13 @@ impl Scalar1f32 {
     }
 
     pub fn new_system(system: Arc<dyn SampleSystem>) -> Self {
-        return Scalar1f32 { system: system.clone(), x: 0f32 };
+        let at : Arc<dyn ArithmeticType> =  Arc::new(number::TYPE_FLOAT32);
+        return Scalar1f32 { system: system.clone(), arttype: at, x: 0f32 };
     }
 
     pub fn new(system: Arc<dyn SampleSystem>, x: f32) -> Self {
-        return Scalar1f32 { system: system.clone(), x: x };
+        let at : Arc<dyn ArithmeticType> =  Arc::new(number::TYPE_FLOAT32);
+        return Scalar1f32 { system: system.clone(), arttype: at, x: x };
     }
 }
 
@@ -44,7 +49,7 @@ impl Tuple for Scalar1f32 {
     }
 
     fn get_numeric_type(&self) -> &Arc<dyn ArithmeticType> {
-        panic!("todo");
+        return &self.arttype;
     }
 
     fn get_sample_count(&self) -> u32 {
