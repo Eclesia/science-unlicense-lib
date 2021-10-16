@@ -2,19 +2,7 @@
 // Public Domain - unlicense.science
 //
 use crate::api::number::ArithmeticType;
-
-pub enum Operand {
-    SIN,
-    COS,
-    TAN,
-    ASIN,
-    ACOS,
-    ATAN,
-    LOG,
-    LOG10,
-    SQRT,
-    CQRT
-}
+use crate::api::number::Operand;
 
 ///
 /// Arithmetic operations.

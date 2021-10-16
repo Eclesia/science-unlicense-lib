@@ -1,6 +1,14 @@
 // Public Domain - unlicense.science
 
-pub mod api;
+pub mod api {
+    mod colorspace {
+    }
+    mod model {
+        mod imagemodel; pub use imagemodel::ImageModel;
+    }
+    
+    mod image; pub use image::Image;
+}
 
 ///
 /// Crate initialisation
@@ -10,4 +18,6 @@ pub fn init() {
 }
 
 #[cfg(test)]
-mod tests;
+mod tests {
+    
+}

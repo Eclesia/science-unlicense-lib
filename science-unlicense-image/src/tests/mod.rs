@@ -1,3 +1,0 @@
-//
-// Public Domain - unlicense.science
-//

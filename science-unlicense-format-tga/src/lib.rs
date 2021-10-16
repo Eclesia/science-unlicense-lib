@@ -1,15 +1,13 @@
 //
 // Public Domain - unlicense.science
 //
+mod tgaformat; pub use crate::tgaformat::TGAFormat;
+mod tgareader; pub use crate::tgareader::TGAReader;
 
-use science_unlicense_encoding::api::store::{FormatHandle, SimpleResource};
-
-mod tgaformat;
-mod tgareader;
-
-pub use crate::tgaformat::TGAFormat;
-pub use crate::tgareader::TGAReader;
-use science_unlicense_common::api::{Module, Polymorph};
+use science_unlicense_encoding::api::store::FormatHandle;
+use science_unlicense_encoding::api::store::SimpleResource;
+use science_unlicense_common::api::Module;
+use science_unlicense_common::api::Polymorph;
 use science_unlicense_common::api::registry;
 
 ///
@@ -32,4 +30,6 @@ pub fn init() {
 }
 
 #[cfg(test)]
-mod tests;
+mod tests {
+    
+}

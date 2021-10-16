@@ -104,14 +104,14 @@ pub trait AbstractTupleTest {
         newtuple.set_from_tuple(tuple);
         assert_true(newtuple.equals(tuple, 0.0), NO_MESSAGE);
 
-        if tuple.get_numeric_type() == TYPE_FLOAT32
-        || tuple.get_numeric_type() == TYPE_FLOAT64 {
+        //if tuple.get_numeric_type() == TYPE_FLOAT32
+        //|| tuple.get_numeric_type() == TYPE_FLOAT64 {
             //test NaN equality
             //copy.set(0, Double.NaN);
-            assert_false(copy.equals(tuple, 0.0), NO_MESSAGE);
+        //    assert_false(copy.equals(tuple, 0.0), NO_MESSAGE);
             //tuple.set(0, Double.NaN);
-            assert_true(copy.equals(tuple, 0.0), NO_MESSAGE);
-        }
+        //    assert_true(copy.equals(tuple, 0.0), NO_MESSAGE);
+        //}
 
     }
 
