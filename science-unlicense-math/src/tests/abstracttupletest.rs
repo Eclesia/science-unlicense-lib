@@ -1,6 +1,9 @@
 use crate::api::Tuple;
 
 use std::sync::Mutex;
+use std::sync::Arc;
+use science_unlicense_common::api::number::TYPE_FLOAT32;
+use science_unlicense_common::api::number::TYPE_FLOAT64;
 use science_unlicense_common::api::asserts::assert_true;
 use science_unlicense_common::api::asserts::assert_false;
 use science_unlicense_common::api::asserts::assert_error;
@@ -89,26 +92,32 @@ pub trait AbstractTupleTest {
         }
 
         //test equals itself
-        //assertEquals(tuple, tuple);
+        assert_true(tuple.equals(&tuple, 0.0), NO_MESSAGE);
 
         //test equals a copy
         let copy = tuple.copy();
-        //assertEquals(tuple, copy);
+        assert_true(tuple.equals(&copy, 0.0), NO_MESSAGE);
 
         //test a equals a newly created tuple
         let mut newtuple = self.create(tuple.get_sample_count());
-        //assert_false(newtuple.equals(tuple));
+        assert_false(newtuple.equals(tuple, 0.0), NO_MESSAGE);
         newtuple.set_from_tuple(tuple);
-        //assertEquals(tuple, copy);
+        assert_true(newtuple.equals(tuple, 0.0), NO_MESSAGE);
 
-        //if (tuple.getNumericType() == Float32.TYPE
-        //    || tuple.getNumericType() == Float64.TYPE) {
-        //    //test NaN equality
-        //    copy.set(0, Double.NaN);
-        //    //assertFalse(copy.equals(tuple));
-        //    tuple.set(0, Double.NaN);
-        //    //assertEquals(copy, tuple);
-        //}
+        if tuple.get_numeric_type() == TYPE_FLOAT32
+        || tuple.get_numeric_type() == TYPE_FLOAT64 {
+            //test NaN equality
+            //copy.set(0, Double.NaN);
+            assert_false(copy.equals(tuple, 0.0), NO_MESSAGE);
+            //tuple.set(0, Double.NaN);
+            assert_true(copy.equals(tuple, 0.0), NO_MESSAGE);
+        }
 
     }
+
+    //pub fn is_same(left: &Object, right: &Object) -> bool {
+    //    let r = ptr::eq(left.as_ref(), right.as_ref());
+    //    println!("comparing: {:p} == {:p} -> {}", left, right, r);
+    //    r
+    //}
 }

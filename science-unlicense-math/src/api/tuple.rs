@@ -317,7 +317,7 @@ pub trait Tuple {
     /// @param tolerance
     /// @return true if tuple are equal
     ///
-    fn equals(&self, obj: Box<dyn Tuple>, tolerance: f64) -> bool {
+    fn equals(&self, obj: &Box<dyn Tuple>, tolerance: f64) -> bool {
         let size = self.get_sample_count();
         let size2 = obj.get_sample_count();
         if size != size2 {
