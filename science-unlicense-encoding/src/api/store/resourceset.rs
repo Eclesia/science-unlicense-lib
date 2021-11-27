@@ -2,33 +2,9 @@
 // Public Domain - unlicense.science
 //
 use crate::api::store::Resource;
-use std::any::TypeId;
-use science_unlicense_common::api::Polymorph;
 use std::error::Error;
 
-pub struct ResourceSetHandle {
-    handle : Box<dyn ResourceSet>
-}
-
-impl ResourceSetHandle {
-
-    pub fn new(fs: Box<dyn ResourceSet>) -> ResourceSetHandle {
-        return ResourceSetHandle{
-            handle : fs
-        };
-    }
-
-    pub fn cast<'a>(cdt: &'a dyn Polymorph) -> Option<&'a dyn ResourceSet>{
-        let ti : TypeId = TypeId::of::<Self>();
-        let x = cdt.get(&ti)?;
-        match x.downcast_ref::<ResourceSetHandle>() {
-            Some(value) => Some(value.handle.as_ref()),
-            None => None
-        }
-    }
-}
-
-pub trait ResourceSet {
+pub trait ResourceSet : Resource {
 
     ///
     /// List resources available

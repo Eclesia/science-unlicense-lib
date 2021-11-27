@@ -14,13 +14,10 @@ pub mod api {
     pub mod store {
         mod format; pub use format::Format;
                     pub use format::FormatRegistryEntry;
-        mod formathandle; pub use formathandle::FormatHandle;
-                          pub mod formats;
+        pub mod formats;
         mod resource; pub use resource::Resource;
         mod resourceset; pub use resourceset::ResourceSet;
-                         pub use resourceset::ResourceSetHandle;
         mod store; pub use store::Store;
-                   pub use store::StoreHandle;
         mod simpleresource; pub use simpleresource::SimpleResource;
     }
 }

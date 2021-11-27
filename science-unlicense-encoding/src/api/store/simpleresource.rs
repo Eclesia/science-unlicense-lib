@@ -27,7 +27,12 @@ impl SimpleResource {
 
 impl Polymorph for SimpleResource {
 
-    fn get(&self, key: &TypeId) -> Option<&Box<dyn Any>> {
-        return self.traits.get(key);
+    fn as_any(&self) -> &dyn Any {
+        return self;
     }
+
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        return self;
+    }
+ 
 }

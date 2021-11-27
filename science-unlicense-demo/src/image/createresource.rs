@@ -2,19 +2,16 @@
 // Public Domain - unlicense.science
 //
 
-use std::any::{Any, TypeId};
-use science_unlicense_encoding::api::store::{SimpleResource, ResourceSetHandle, ResourceSet, Resource};
+use std::any::{Any};
+use science_unlicense_encoding::api::store::{ResourceSet, Resource};
 use science_unlicense_common::api::Polymorph;
 use std::error::Error;
 
 pub fn main() {
 
-    let mut res = SimpleResource::new();
     let t = MyFE{};
-    let h = ResourceSetHandle::new(Box::new(t));
-    res.put(Box::new(h));
 
-    let b = ResourceSetHandle::cast(&res);
+    let b = science_unlicense_common::api::reflection::cast_ref::<MyFE,dyn ResourceSet>(&t);
 
     match b {
         Some(_rs) => println!("found"),
@@ -26,8 +23,13 @@ struct MyFE {
 }
 
 impl Polymorph for MyFE {
-    fn get(&self, _key: &TypeId) -> Option<&Box<dyn Any>> {
-        todo!()
+    
+    fn as_any(&self) -> &dyn Any {
+        return self;
+    }
+
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        return self;
     }
 }
 

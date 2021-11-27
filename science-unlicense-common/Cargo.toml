@@ -10,3 +10,4 @@ keywords = ["science"]
 publish = true
 
 [dependencies]
+traitcast = "0.5.0"

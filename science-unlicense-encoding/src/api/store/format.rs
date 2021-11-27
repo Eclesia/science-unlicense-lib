@@ -6,6 +6,7 @@ use crate::api::io::Readable;
 use crate::api::store::Store;
 use std::error::Error;
 use std::fs::File;
+use traitcast::TraitcastFrom;
 
 ///
 /// A format define a group of bytes organize in a defined structure.
@@ -20,7 +21,7 @@ use std::fs::File;
 /// Formats are registered using https://github.com/dtolnay/inventory
 ///
 ///
-pub trait Format {
+pub trait Format : TraitcastFrom {
 
     ///
     /// Identifier inside the library.

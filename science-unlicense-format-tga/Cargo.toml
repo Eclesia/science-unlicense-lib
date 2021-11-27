@@ -13,3 +13,6 @@ publish = true
 science-unlicense-common = { path = "../science-unlicense-common" }
 science-unlicense-encoding = { path = "../science-unlicense-encoding" }
 science-unlicense-image = { path = "../science-unlicense-image" }
+traitcast = "0.5.0"
+traitcast_core = "0.2.0"
+inventory = "0.1.*"

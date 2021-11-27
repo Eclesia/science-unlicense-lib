@@ -1,6 +1,7 @@
 use science_unlicense_common::api::registry;
-use science_unlicense_encoding::api::store::FormatHandle;
-use std::borrow::Borrow;
+use science_unlicense_encoding::api::store::Format;
+use science_unlicense_common::api::reflection;
+use std::any::Any;
 
 pub fn main() {
     formats2();
@@ -17,10 +18,11 @@ pub fn formats2() {
         //search for ImageFormat types
         let q = module.entries.iter();
         for polymorph in q {
-            let cdt = FormatHandle::cast(polymorph.borrow());
+            let p = polymorph.as_any();
+            let cdt = reflection::cast_ref::<dyn Any,dyn Format>(p);
             match cdt {
                 Some(format) => println!("found format : {}", format.get_identifier() ),
-                _ => println!("not found")
+                None => println!("not found")
             }
         }
     }

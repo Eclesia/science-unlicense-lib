@@ -2,8 +2,10 @@
 // Public Domain - unlicense.science
 //
 
+use science_unlicense_common::api::Polymorph;
 use science_unlicense_encoding::api::store::{Format, Store};
 use science_unlicense_encoding::api::io::Readable;
+use std::any::Any;
 use std::error::Error;
 use std::fs::File;
 use crate::TGAReader;
@@ -14,8 +16,19 @@ pub struct TGAFormat {
 
 impl TGAFormat {
 
-    pub fn new() -> Self{
+    pub fn new() -> Self {
         return TGAFormat{};
+    }
+}
+
+impl Polymorph for TGAFormat {
+
+    fn as_any(&self) -> &dyn Any {
+        return self;
+    }
+
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        return self;
     }
 }
 

@@ -21,6 +21,67 @@ pub mod api {
         mod float64; pub use float64::Float64;
         pub mod primitive;
     }
+    pub mod reflection {
+        ///
+        /// Cast given Any to a concrete type.
+        ///
+        pub fn cast_struct<T: std::any::Any>(x : &dyn std::any::Any) -> Option<&T> {
+            return x.downcast_ref::<T>();
+        }
+
+        ///
+        /// Tests whether the given value is castable to some trait object. This will
+        /// always return `false` if the implementation of the target trait, for the
+        /// concrete type of x, has not been registered via `traitcast!`.
+        ///
+        pub fn implements_trait<From, To>(x: &From) -> bool
+        where
+            From: traitcast::TraitcastFrom + ?Sized,
+            To: ?Sized + 'static,
+        {
+            return traitcast::implements_trait::<From, To>(x);
+        }
+
+        ///
+        /// Tries to cast the given pointer to a dynamic trait object. This will always
+        /// return Err if the implementation of the target trait, for the concrete type
+        /// of x, has not been registered via `traitcast!`.
+        ///
+        pub fn cast_box<From, To>(x: Box<From>) -> Result<Box<To>, Box<dyn std::any::Any>>
+        where
+            From: traitcast::TraitcastFrom + ?Sized,
+            To: ?Sized + 'static,
+        {
+            return traitcast::cast_box::<From, To>(x);
+        }
+
+        ///
+        /// Tries to cast the given mutable reference to a dynamic trait object. This
+        /// will always return None if the implementation of the target trait, for the
+        /// concrete type of x, has not been registered via `traitcast!`.
+        ///
+        pub fn cast_mut<'a, From, To>(x: &'a mut From) -> Option<&'a mut To>
+        where
+            From: traitcast::TraitcastFrom + ?Sized,
+            To: ?Sized + 'static,
+        {
+            return traitcast::cast_mut::<From, To>(x);
+        }
+
+        ///
+        /// Tries to cast the given reference to a dynamic trait object. This will
+        /// always return None if the implementation of the target trait, for the
+        /// concrete type of x, has not been registered via `traitcast!`.
+        ///
+        pub fn cast_ref<'a, From, To>(x: &'a From) -> Option<&'a To>
+        where
+            From: traitcast::TraitcastFrom + ?Sized,
+            To: ?Sized + 'static,
+        {
+            return traitcast::cast_ref::<From, To>(x);
+        }
+
+    }
     mod logger; pub use logger::Logger;
     mod polymorph; pub use polymorph::Polymorph;
     mod module; pub use module::Module;

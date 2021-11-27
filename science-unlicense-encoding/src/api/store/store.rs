@@ -4,32 +4,7 @@
 
 use crate::api::store::Resource;
 use crate::api::store::Format;
-use science_unlicense_common::api::Polymorph;
-use std::any::TypeId;
 use science_unlicense_common::api::Logger;
-
-
-pub struct StoreHandle {
-    handle : Box<dyn Store>
-}
-
-impl StoreHandle {
-
-    pub fn new(fs: Box<dyn Store>) -> StoreHandle {
-        return StoreHandle{
-            handle : fs
-        };
-    }
-
-    pub fn cast<'a>(cdt: &'a dyn Polymorph) -> Option<&'a dyn Store>{
-        let ti : TypeId = TypeId::of::<Self>();
-        let x = cdt.get(&ti)?;
-        match x.downcast_ref::<StoreHandle>() {
-            Some(value) => Some(value.handle.as_ref()),
-            None => None
-        }
-    }
-}
 
 pub trait Store : Resource {
 
