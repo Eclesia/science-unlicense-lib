@@ -1,6 +1,11 @@
 // Public Domain - unlicense.science
 
 pub mod api {
+    pub mod event {
+        mod event; pub use event::Event;
+        mod eventmessage; pub use eventmessage::EventMessage;
+        mod eventsource; pub use eventsource::EventSource;
+    }
     pub mod model {
         pub mod doc {
             mod documenttype; pub use documenttype::DocumentType;
