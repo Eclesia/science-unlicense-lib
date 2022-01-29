@@ -13,6 +13,6 @@ pub trait TupleSpace {
     ///
     fn get_sample_system(&self) -> &Arc<dyn SampleSystem>;
 
-    fn get(&self, coordinate: Box<dyn Tuple>) -> Box<dyn Tuple>;
+    fn get(&self, coordinate: &dyn Tuple) -> Box<dyn Tuple>;
 
 }

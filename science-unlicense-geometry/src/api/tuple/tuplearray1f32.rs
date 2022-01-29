@@ -1,12 +1,13 @@
 //
 // Public Domain - unlicense.science
 //
-use crate::api::tuple::{TupleArray, TupleSpace};
+use crate::api::tuple::TupleArray;
+use crate::api::tuple::TupleSpace;
 use science_unlicense_math::api::Scalar1f32;
 use science_unlicense_math::api::Tuple;
-use std::sync::Arc;
 use science_unlicense_math::api::system::SampleSystem;
 use science_unlicense_math::api::system::samplesystems;
+use std::sync::Arc;
 
 pub struct TupleArray1f32 {
     system: Arc<dyn SampleSystem>,
@@ -29,7 +30,7 @@ impl TupleSpace for TupleArray1f32 {
         return &self.system;
     }
 
-    fn get(&self, coordinate: Box<dyn Tuple>) -> Box<dyn Tuple> {
+    fn get(&self, coordinate: &dyn Tuple) -> Box<dyn Tuple> {
         let x = self.values[coordinate.get(0) as usize];
         let s = Scalar1f32::new_data(x);
         return Box::new(s);

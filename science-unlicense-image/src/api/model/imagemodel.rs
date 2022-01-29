@@ -6,6 +6,9 @@ use science_unlicense_geometry::api::tuple::TupleArray;
 
 pub trait ImageModel {
 
-    fn view(&self, image: Box<&dyn Image>) -> Box<dyn TupleArray>;
+    fn get_nb_samples(&self) -> u32;
 
+    fn read(&self, image: &Box<&dyn Image>) -> Box<&dyn TupleArray>;
+
+    fn read_write(&self, image: &Box<dyn Image>) -> Box<dyn TupleArray>;
 }
