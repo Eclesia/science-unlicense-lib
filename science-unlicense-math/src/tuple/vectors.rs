@@ -1,9 +1,11 @@
 //
 // Public Domain - unlicense.science
 //
-use crate::api::{Scalar1f32, Tuple, Vector2u32};
-use crate::api::system::SampleSystem;
-use crate::api::system::samplesystems;
+use crate::system::SampleSystem;
+use crate::system::samplesystems;
+use crate::tuple::Scalar1f32;
+use crate::tuple::Tuple;
+use crate::tuple::Vector2u32;
 use science_unlicense_common::api::number::primitive::Primitives;
 use science_unlicense_common::api::number::ArithmeticType;
 use std::sync::Arc;

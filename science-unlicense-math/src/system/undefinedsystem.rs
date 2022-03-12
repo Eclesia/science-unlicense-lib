@@ -1,7 +1,7 @@
 //
 // Public Domain - unlicense.science
 //
-use crate::api::system::SampleSystem;
+use crate::system::SampleSystem;
 
 pub struct UndefinedSystem {
     nb_components : u32

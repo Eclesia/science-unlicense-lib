@@ -3,10 +3,10 @@
 //
 use crate::api::tuple::TupleArray;
 use crate::api::tuple::TupleSpace;
-use science_unlicense_math::api::Scalar1f32;
-use science_unlicense_math::api::Tuple;
-use science_unlicense_math::api::system::SampleSystem;
-use science_unlicense_math::api::system::samplesystems;
+use science_unlicense_math::tuple::Scalar1f32;
+use science_unlicense_math::tuple::Tuple;
+use science_unlicense_math::system::SampleSystem;
+use science_unlicense_math::system::samplesystems;
 use std::sync::Arc;
 
 pub struct TupleArray1f32 {

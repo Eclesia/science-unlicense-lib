@@ -1,8 +1,8 @@
 //
 // Public Domain - unlicense.science
 //
-use crate::api::system::SampleSystem;
-use crate::api::vectors;
+use crate::system::SampleSystem;
+use crate::tuple::vectors;
 use science_unlicense_common::api::number::ArithmeticType;
 use science_unlicense_common::api::number::Arithmetic;
 use std::sync::Arc;

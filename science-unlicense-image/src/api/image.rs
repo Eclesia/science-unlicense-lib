@@ -2,7 +2,7 @@
 // Public Domain - unlicense.science
 //
 use crate::api::model::ImageModel;
-use science_unlicense_math::api::Tuple;
+use science_unlicense_math::tuple::Tuple;
 use science_unlicense_geometry::api::Extenti64;
 use science_unlicense_geometry::api::tuple::TupleArray;
 

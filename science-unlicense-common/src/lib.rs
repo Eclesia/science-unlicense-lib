@@ -1,11 +1,6 @@
 // Public Domain - unlicense.science
 
 pub mod api {
-    pub mod event {
-        mod event; pub use event::Event;
-        mod eventmessage; pub use eventmessage::EventMessage;
-        mod eventsource; pub use eventsource::EventSource;
-    }
     pub mod model {
         pub mod doc {
             mod documenttype; pub use documenttype::DocumentType;
@@ -95,6 +90,18 @@ pub mod api {
     pub mod registry;
     pub mod asserts;
     
+}
+
+pub mod event {
+    mod event; pub use event::Event;
+    mod eventlistener; pub use eventlistener::EventListener;
+    mod eventmessage; pub use eventmessage::EventMessage;
+    mod eventsource; pub use eventsource::EventSource;
+}
+
+pub mod predicate {
+    mod expression; pub use expression::Expression;
+    mod predicate; pub use predicate::Predicate;
 }
 
 ///

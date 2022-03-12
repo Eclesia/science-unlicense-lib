@@ -1,8 +1,8 @@
 //
 // Public Domain - unlicense.science
 //
-use crate::api::event::EventMessage;
-use crate::api::event::EventSource;
+use crate::event::EventMessage;
+use crate::event::EventSource;
 
 ///
 /// An event is a container for informations.

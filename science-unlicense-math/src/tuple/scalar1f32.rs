@@ -1,13 +1,13 @@
 //
 // Public Domain - unlicense.science
 //
-use crate::api::Tuple;
-use crate::api::Vector;
-use crate::api::MESSAGE_INVALID_COORD;
+use crate::tuple::Tuple;
+use crate::tuple::Vector;
+use crate::tuple::MESSAGE_INVALID_COORD;
 use science_unlicense_common::api::logging;
 use std::panic::panic_any;
-use crate::api::system::SampleSystem;
-use crate::api::system::samplesystems;
+use crate::system::SampleSystem;
+use crate::system::samplesystems;
 use science_unlicense_common::api::number::ArithmeticType;
 use science_unlicense_common::api::number::Arithmetic;
 use science_unlicense_common::api::number;

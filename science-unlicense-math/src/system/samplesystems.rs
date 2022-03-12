@@ -2,7 +2,8 @@
 // Public Domain - unlicense.science
 //
 
-use crate::api::system::{UndefinedSystem, SampleSystem};
+use crate::system::UndefinedSystem;
+use crate::system::SampleSystem;
 use std::sync::Arc;
 
 ///

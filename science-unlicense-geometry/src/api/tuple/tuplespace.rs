@@ -1,10 +1,10 @@
 //
 // Public Domain - unlicense.science
 //
-use science_unlicense_math::api::system::SampleSystem;
+use science_unlicense_math::system::SampleSystem;
 use std::sync::Arc;
 
-use science_unlicense_math::api::Tuple;
+use science_unlicense_math::tuple::Tuple;
 
 pub trait TupleSpace {
 

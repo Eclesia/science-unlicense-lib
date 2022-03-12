@@ -1,5 +1,5 @@
 use std::panic::panic_any;
-use science_unlicense_math::api::MESSAGE_INVALID_COORD;
+use science_unlicense_math::tuple::MESSAGE_INVALID_COORD;
 use science_unlicense_common::api::logging;
 
 //

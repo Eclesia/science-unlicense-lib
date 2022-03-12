@@ -1,8 +1,8 @@
 //
 // Public Domain - unlicense.science
 //
-use science_unlicense_math::api::{Scalar1f32, Tuple};
-use science_unlicense_math::api::vectors;
+use science_unlicense_math::tuple::{Scalar1f32, Tuple};
+use science_unlicense_math::tuple::vectors;
 use science_unlicense_common::api::number::primitive::Primitives;
 
 pub fn main() {
